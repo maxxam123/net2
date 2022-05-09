@@ -1,6 +1,6 @@
 import Featured from '../../components/featured/Featured';
 import Navbar from '../../components/navbar/Navbar';
-// import List from '../../components/list/List';
+import List from '../../components/list/List';
 import './home.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -36,9 +36,9 @@ const Home = ({ type }) => {
     <div className="home">
       <Navbar />
       <Featured type={type} />
-      {/* {lists.map((list) => (
+      {lists.map((list) => (
         <List list={list} />
-      ))} */}
+      ))}
     </div>
   );
 };
