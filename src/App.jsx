@@ -1,6 +1,5 @@
 import './app.scss';
 import Home from './pages/home/Home';
-import Login from './pages/login/Login';
 import Watch from './pages/watch/Watch';
 import {
   BrowserRouter as Router,
@@ -10,15 +9,17 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Register from './pages/register/Register';
+import Login from './pages/Login';
+import { useSelector } from 'react-redux';
 
 const App = () => {
-  const user = true;
+  const user = useSelector((state) => state.user.currentUser);
 
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          {user ? <Home /> : <Redirect to="/register" />}
+          {user ? <Home /> : <Redirect to="/login" />}
         </Route>
         <Route path="/register">
           {!user ? <Register /> : <Redirect to="/" />}

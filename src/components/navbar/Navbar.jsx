@@ -2,6 +2,8 @@ import './navbar.scss';
 import { Search, Notifications, ArrowDropDown } from '@material-ui/icons';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/apiCalls';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,6 +11,14 @@ const Navbar = () => {
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
+  };
+
+  const dispatch = useDispatch();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    logout(dispatch);
+    // logpro(dispatch);
   };
 
   return (
@@ -32,6 +42,20 @@ const Navbar = () => {
           <Search className="icon" />
           <span>KID</span>
           <Notifications className="icon" />
+          <button
+            style={{
+              padding: 10,
+              width: 80,
+              backgroundColor: 'gray',
+              color: 'white',
+              borderRadius: '5px',
+              marginRight: 20,
+              cursor: 'pointer',
+            }}
+            onClick={handleClick}
+          >
+            Logout
+          </button>
           <img src="/assets/3.jpg" alt="" />
           <div className="profile">
             <ArrowDropDown className="icon" />
